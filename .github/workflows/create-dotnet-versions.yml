@@ -1,0 +1,24 @@
+name: Verify Create Dotnet Version
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  create-dotnet-versions-local:
+    runs-on: ubuntu-latest
+    name: Test the create-dotnet-versions locally
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3    
+      - name: Create version step
+        id: create-version
+        uses: ./
+        with:
+          version: 'v1.2.3-beta.4'
+      - name: Get the output version
+        run: echo "The time was ${{ steps.create.outputs.time }}"

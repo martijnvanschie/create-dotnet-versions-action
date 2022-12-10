@@ -1,0 +1,21 @@
+name: 'Create dotnet versions'
+description: 'Create various dotnet assembly versions bases on the Semantic Versioning 2.0.0 standard'
+inputs:
+  baseversion:
+    description: 'The base pattern used the create the additional versions'
+    required: true
+    default: '1.0.0.0'
+outputs:
+  version-assembly:
+    description: 'The version according to the `AssemblyVersion` format.'
+  version-file:
+    description: 'The version according to the `FileVersion` format.'
+  version-informational:
+    description: 'The version according to the `InformationalVersion` format.'
+  version-package:
+    description: 'The version according to the `PackageVersion` format.'
+  buildnumber:
+    description: 'The unique build number generated during the action.'                
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
