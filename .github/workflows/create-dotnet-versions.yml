@@ -15,10 +15,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3    
+
       - name: Create version step
-        id: create-version
+        id: dotnet-version
         uses: ./
         with:
-          version: 'v1.2.3-beta.4'
+          baseversion: 'v1.2.3-beta.4'
+
       - name: Get the output version
         run: echo "The time was ${{ steps.create.outputs.time }}"
+
+      - name: Echo all version outputs
+        run: |
+          echo version-assembly = ${{ steps.dotnet-versions.outputs.version-assembly }} 
+          echo version-file = ${{ steps.dotnet-versions.outputs.version-file }}
+          echo version-informational = ${{ steps.dotnet-versions.outputs.version-informational }}
+          echo version-package = ${{ steps.dotnet-versions.outputs.version-package }}
+          echo buildnumber = ${{ steps.dotnet-versions.outputs.buildnumber }}        

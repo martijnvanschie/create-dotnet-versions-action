@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 try {
-  var baseVersion = core.getInput('version', {required: false}) || 'v1.0.0-beta.1';
+  var baseVersion = core.getInput('baseversion', {required: false}) || 'v1.0.0-beta.1';
   core.info(`Input version: ${baseVersion}`);
 
   baseVersion = baseVersion.replace(/^(v)/,"");
