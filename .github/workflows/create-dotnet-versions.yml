@@ -25,11 +25,16 @@ jobs:
         with:
           baseversion: 'v1.2.3-beta.4'
 
+      - name: Print all output joined
+        run: echo -e '${{join(steps.dotnetversion.outputs.*, '\n')}}' 
+
+      - name: Print version-assembly
+        run: echo version-assembly ${{ steps.dotnetversion.outputs.version-assembly }}                                    
+
       - name: Echo all version outputs
-        shell: bash
         run: |
-          echo 'version-assembly = ${{ steps.dotnetversions.outputs.version-assembly }}'
-          echo "version-file = ${{ steps.dotnetversions.outputs.version-file }}"
-          echo "version-informational = ${{ steps.dotnetversions.outputs.version-informational }}"
-          echo "version-package = ${{ steps.dotnetversions.outputs.version-package }}"
-          echo "buildnumber = ${{ steps.dotnetversions.outputs.buildnumber }}"
+          echo version-assembly is ${{ steps.dotnetversion.outputs.version-assembly }}
+          echo "version-file = ${{ steps.dotnetversion.outputs.version-file }}"
+          echo "version-informational = ${{ steps.dotnetversion.outputs.version-informational }}"
+          echo "version-package = ${{ steps.dotnetversion.outputs.version-package }}"
+          echo "buildnumber = ${{ steps.dotnetversion.outputs.buildnumber }}"

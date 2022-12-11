@@ -9737,10 +9737,19 @@ try {
   core.endGroup();
 
   core.startGroup('Setting action outputs.');
-    core.setOutput("version-assembly", assemblyVersion);
+    core.info('Setting version-assembly');
+    core.setOutput('version-assembly', `${assemblyVersion}`);
+
+    core.info('Setting version-file');
     core.setOutput("version-file", fileVersion);
+
+    core.info('Setting version-informational');
     core.setOutput("version-informational", informationalVersion);
+
+    core.info('Setting version-package');
     core.setOutput("version-package", packageVersion);
+
+    core.info('Setting buildnumber');
     core.setOutput("buildnumber", buildnumber);
   core.endGroup();
 
