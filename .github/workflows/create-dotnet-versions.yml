@@ -24,8 +24,8 @@ jobs:
 
       - name: Echo all version outputs
         run: |
-          echo version-assembly = ${{ steps.dotnet-versions.outputs.version-assembly }} 
-          echo version-file = ${{ steps.dotnet-versions.outputs.version-file }}
-          echo version-informational = ${{ steps.dotnet-versions.outputs.version-informational }}
-          echo version-package = ${{ steps.dotnet-versions.outputs.version-package }}
-          echo buildnumber = ${{ steps.dotnet-versions.outputs.buildnumber }}        
+          echo "version-assembly = ${{ steps.dotnet-versions.outputs.version-assembly }}"
+          echo "version-file = ${{ steps.dotnet-versions.outputs.version-file }}"
+          echo "version-informational = ${{ steps.dotnet-versions.outputs.version-informational }}"
+          echo "version-package = ${{ steps.dotnet-versions.outputs.version-package }}"
+          echo "buildnumber = ${{ steps.dotnet-versions.outputs.buildnumber }}"
