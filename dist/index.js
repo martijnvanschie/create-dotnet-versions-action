@@ -9695,6 +9695,7 @@ try {
     core.info(`RUNNER_DEBUG not set.`);
   }
 
+  core.info(`RUNNER_DEBUG = ${process.env.RUNNER_DEBUG}`);
   core.info(`GITHUB_OUTPUT = ${process.env.GITHUB_OUTPUT}`);
 
 
@@ -9722,7 +9723,8 @@ try {
   
   const time = new Date();
   const buildnumber = time.getHours() * 60 + time.getMinutes();
-
+  
+  core.group('Generate numbers');
   const assemblyVersion = `${versionParts[0]}.${versionParts[1]}`;
   const fileVersion = `${versionParts[0]}.${versionParts[1]}.${releaseParts[0]}.${buildnumber}`;
   const informationalVersion = `${baseVersion}+${sha}`;
@@ -9733,7 +9735,8 @@ try {
   core.info(`informationalVersion: ${informationalVersion}`);
   core.info(`packageVersion: ${packageVersion}`);
   core.info(`buildnumber: ${buildnumber}`);
-  
+  core.endGroup();
+
   core.info('Setting action outputs.');
   core.setOutput("version-assembly", assemblyVersion);
   core.setOutput("version-file", fileVersion);
