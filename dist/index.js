@@ -9717,6 +9717,12 @@ try {
   const fileVersion = `${versionParts[0]}.${versionParts[1]}.${releaseParts[0]}.${buildnumber}`;
   const informationalVersion = `${baseVersion}+${sha}`;
   const packageVersion = baseVersion;
+
+  core.info(`assemblyVersion: ${assemblyVersion}`);
+  core.info(`fileVersion: ${fileVersion}`);
+  core.info(`informationalVersion: ${informationalVersion}`);
+  core.info(`packageVersion: ${packageVersion}`);
+  core.info(`buildnumber: ${buildnumber}`);
   
   core.setOutput("version-assembly", assemblyVersion);
   core.setOutput("version-file", fileVersion);

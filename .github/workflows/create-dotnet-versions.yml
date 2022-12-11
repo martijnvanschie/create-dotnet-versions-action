@@ -22,9 +22,6 @@ jobs:
         with:
           baseversion: 'v1.2.3-beta.4'
 
-      - name: Get the output version
-        run: echo "The time was ${{ steps.create.outputs.time }}"
-
       - name: Echo all version outputs
         run: |
           echo version-assembly = ${{ steps.dotnet-versions.outputs.version-assembly }} 
