@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3    
 
       - name: Create version step
-        id: dotnet-version
+        id: dotnetversion
         uses: ./
         with:
           baseversion: 'v1.2.3-beta.4'
@@ -25,8 +25,8 @@ jobs:
       - name: Echo all version outputs
         shell: bash
         run: |
-          echo 'version-assembly = ${{ steps.dotnet-versions.outputs.version-assembly }}'
-          echo "version-file = ${{ steps.dotnet-versions.outputs.version-file }}"
-          echo "version-informational = ${{ steps.dotnet-versions.outputs.version-informational }}"
-          echo "version-package = ${{ steps.dotnet-versions.outputs.version-package }}"
-          echo "buildnumber = ${{ steps.dotnet-versions.outputs.buildnumber }}"
+          echo 'version-assembly = ${{ steps.dotnetversions.outputs.version-assembly }}'
+          echo "version-file = ${{ steps.dotnetversions.outputs.version-file }}"
+          echo "version-informational = ${{ steps.dotnetversions.outputs.version-informational }}"
+          echo "version-package = ${{ steps.dotnetversions.outputs.version-package }}"
+          echo "buildnumber = ${{ steps.dotnetversions.outputs.buildnumber }}"

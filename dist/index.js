@@ -9730,6 +9730,9 @@ try {
   core.setOutput("version-informational", informationalVersion);
   core.setOutput("version-package", packageVersion);
   core.setOutput("buildnumber", buildnumber);
+
+  console.log(`"buildnumber=${buildnumber}" >> $GITHUB_OUTPUT`);
+
   core.info('Action done!');
 }
 catch (error) {
