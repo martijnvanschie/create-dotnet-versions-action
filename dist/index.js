@@ -9724,11 +9724,13 @@ try {
   core.info(`packageVersion: ${packageVersion}`);
   core.info(`buildnumber: ${buildnumber}`);
   
+  core.info('Setting action outputs.');
   core.setOutput("version-assembly", assemblyVersion);
   core.setOutput("version-file", fileVersion);
   core.setOutput("version-informational", informationalVersion);
   core.setOutput("version-package", packageVersion);
   core.setOutput("buildnumber", buildnumber);
+  core.info('Action done!');
 }
 catch (error) {
   core.setFailed(error.message);
