@@ -2,6 +2,16 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 try {
+
+  if (process.env.RUNNER_DEBUG) {
+    core.info(`RUNNER_DEBUG set to ${process.env.RUNNER_DEBUG}`);
+  } else {
+    core.info(`RUNNER_DEBUG not set.`);
+  }
+
+  core.info(`GITHUB_OUTPUT = ${process.env.GITHUB_OUTPUT}`);
+
+
   var baseVersion = core.getInput('baseversion', {required: false}) || 'v1.0.0-beta.1';
   core.info(`Input version: ${baseVersion}`);
 
@@ -44,8 +54,6 @@ try {
   core.setOutput("version-informational", informationalVersion);
   core.setOutput("version-package", packageVersion);
   core.setOutput("buildnumber", buildnumber);
-
-  console.log(`"buildnumber=${buildnumber}" >> $GITHUB_OUTPUT`);
 
   core.info('Action done!');
 }
