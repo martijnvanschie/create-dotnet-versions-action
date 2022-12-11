@@ -8,6 +8,9 @@ on:
 
   workflow_dispatch:
 
+env:
+  RUNNER_DEBUG: 1
+
 jobs:
   create-dotnet-versions-local:
     runs-on: ubuntu-latest
