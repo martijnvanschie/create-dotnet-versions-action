@@ -4,16 +4,31 @@ This action created various versions based on the [Semantic Versioning 2.0.0](ht
 
 ## Dotnet Versioning
 
+### Version numbers
+
 This project follow the below versioning guidelines.
 
 | Version              | Format                                      | Description |
 | -------------------- | ------------------------------------------- | ----------- |
-| AssemblyVersion      | `major.minor.0.0`                           | Scoped to only major and minor version changes. Indicates backward compatibility. |
-| FileVersion          | `major.minor.patch.build`                   | Includes a patch and build numer, indicating the exact version of the application. |
-| InformationalVersion | `major.minor.patch[-pre-release]`           | Includes a pre-release identifier. This is the informational version used to communicate. |
-| PackageVersion       | `major.minor.patch[-pre-release]+commit-id` | Includes the commit id. This is the most specific version and has a direct reference to the github commit. |
+| AssemblyVersion      | `major.minor.0.0`                           | The assembly version is what the CLR uses at run time to select which version of an assembly to load. It is scoped to only major and minor version changes. Indicates backward compatibility. |
+| FileVersion          | `major.minor.patch.build`                   | The assembly file version is used to display a file version in Windows. It includes a patch and build number, indicating the exact version of the application. |
+| PackageVersion       | `major.minor.patch[-pre-release]`           | Contains the NuGet package version which is displayed on NuGet.org. It includes a pre-release identifier. This is also the informational version used to communicate. |
+| InformationalVersion | `major.minor.patch[-pre-release]+commit-id` | The assembly informational version is used to record additional version information. It includes the commit id. This is the most specific version and has a direct reference to the github commit. |
 
 [Versioning and .NET Libraries](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/versioning)
+
+### Dotnet versions usage configuration
+
+This action generates the version attributes commonly used in dotnet project files.
+
+```xml
+<PropertyGroup>
+	<AssemblyVersion>1.0</AssemblyVersion>
+	<FileVersion>1.0.0.123</FileVersion>
+	<InformationalVersion>1.0.0-beta.1+204ff0a</InformationalVersion>
+	<PackageVersion>1.0.0-beta.1</PackageVersion>
+</PropertyGroup>
+```
 
 ## Inputs
 
@@ -58,28 +73,28 @@ The unique build number generated during the action.
 
 Add the following step to your job referencing the repository and action folder you want to use.
 
-Either use a *tag* (prefered) or *branch* name for the `{ref}`. This makes sure that changes do not potentially effect your build.
+Either use a *tag* (preferred) or *branch* name for the `{ref}`. This makes sure that changes do not potentially effect your build.
 
 ```yaml
 - name: Get version from tag
   id: dotnet-versions
-  uses: martijnvanschie/github-actions/create-dotnet-versions@{ref}
+  uses: martijnvanschie/create-dotnet-versions@{ref}
   with: 
     baseversion: '1.2.3-beta.1'
 ```
 Example ref uaing tag:
 
 ```yaml
-uses: martijnvanschie/github-actions/create-dotnet-versions@main
+uses: martijnvanschie/create-dotnet-versions@main
 ```
 
 Example ref uaing tag:
 
 ```yaml
-uses: martijnvanschie/github-actions/create-dotnet-versions@v1.0.0-rc.1
+uses: martijnvanschie/create-dotnet-versions@v1.0.0-rc.1
 ```
 
-### Reading the output parameteres
+### Reading the output parameters
 
 The following step displays the versions returned by the action
 
