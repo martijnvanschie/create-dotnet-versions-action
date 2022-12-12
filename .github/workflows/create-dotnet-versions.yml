@@ -38,3 +38,20 @@ jobs:
           echo "version-informational = ${{ steps.dotnetversion.outputs.version-informational }}"
           echo "version-package = ${{ steps.dotnetversion.outputs.version-package }}"
           echo "buildnumber = ${{ steps.dotnetversion.outputs.buildnumber }}"
+      
+      - name: Verify Versions
+        uses: actions/github-script@v6
+        with:
+          script: |
+            if ('${{ steps.dotnetversion.outputs.version-assembly }}' != '1.2') {
+              core.setFailed('version-assembly is incorrect')
+            }
+            if ('${{ steps.dotnetversion.outputs.version-file }}'.startsWith('1.2.3') == false) {
+              core.setFailed('version-file is incorrect')
+            } 
+            if ('${{ steps.dotnetversion.outputs.version-informational }}'.startsWith('1.2.3-beta.4') == false) {
+              core.setFailed('version-informational is incorrect')
+            } 
+            if ('${{ steps.dotnetversion.outputs.version-package }}' != '1.2.3-beta.4') {
+              core.setFailed('version-package is incorrect')
+            }            
