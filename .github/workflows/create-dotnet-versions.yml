@@ -2,9 +2,9 @@ name: Verify Create Dotnet Version
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
   workflow_dispatch:
 
@@ -17,19 +17,19 @@ jobs:
     name: Test the create-dotnet-versions locally
     steps:
       - name: Checkout
-        uses: actions/checkout@v3    
+        uses: actions/checkout@v3
 
       - name: Create version step
         id: dotnetversion
         uses: ./
         with:
-          baseversion: 'v1.2.3-beta.4'
+          baseversion: "v1.2.3-beta.4"
 
       - name: Print all output joined
-        run: echo -e '${{join(steps.dotnetversion.outputs.*, '\n')}}' 
+        run: echo -e '${{join(steps.dotnetversion.outputs.*, '\n')}}'
 
       - name: Print version-assembly
-        run: echo version-assembly ${{ steps.dotnetversion.outputs.version-assembly }}                                    
+        run: echo version-assembly ${{ steps.dotnetversion.outputs.version-assembly }}
 
       - name: Echo all version outputs
         run: |
@@ -38,7 +38,7 @@ jobs:
           echo "version-informational = ${{ steps.dotnetversion.outputs.version-informational }}"
           echo "version-package = ${{ steps.dotnetversion.outputs.version-package }}"
           echo "buildnumber = ${{ steps.dotnetversion.outputs.buildnumber }}"
-      
+
       - name: Verify Versions
         uses: actions/github-script@v6
         with:
@@ -54,4 +54,4 @@ jobs:
             } 
             if ('${{ steps.dotnetversion.outputs.version-package }}' != '1.2.3-beta.4') {
               core.setFailed('version-package is incorrect')
-            }            
+            }
