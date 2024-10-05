@@ -17,7 +17,7 @@ jobs:
     name: Test the create-dotnet-versions locally
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Create version step
         id: dotnetversion
@@ -40,7 +40,7 @@ jobs:
           echo "buildnumber = ${{ steps.dotnetversion.outputs.buildnumber }}"
 
       - name: Verify Versions
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             if ('${{ steps.dotnetversion.outputs.version-assembly }}' != '1.2') {
